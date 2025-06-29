@@ -61,24 +61,33 @@
       }
     };
 
-    let lang = navigator.language.startsWith("ru") ? "ru" : "en";
+    let lang = localStorage.getItem("lang") || (navigator.language.startsWith("ru") ? "ru" : "en");
     const $ = id => document.getElementById(id);
 
     function updateLanguage() {
       const t = i18n[lang];
+      document.title = t.title;
       $("title").textContent = t.title;
       $("username").placeholder = t.placeholder;
       $("sortDesc").textContent = t.sortDesc;
       $("sortAsc").textContent = t.sortAsc;
       if (!cardsContainer.children.length) $("loading").textContent = t.loading;
+
+      const activeClass = "bg-purple-600 text-white";
+      const inactiveClass = "bg-gray-800 hover:bg-gray-700 text-white";
+
+      $("lang-ru").className = lang === "ru" ? activeClass + " px-3 py-1 rounded" : inactiveClass + " px-3 py-1 rounded";
+      $("lang-en").className = lang === "en" ? activeClass + " px-3 py-1 rounded" : inactiveClass + " px-3 py-1 rounded";
     }
 
     $("lang-ru").addEventListener("click", () => {
       lang = "ru";
+      localStorage.setItem("lang", lang);
       updateLanguage();
     });
     $("lang-en").addEventListener("click", () => {
       lang = "en";
+      localStorage.setItem("lang", lang);
       updateLanguage();
     });
 
