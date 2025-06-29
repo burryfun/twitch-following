@@ -6,7 +6,7 @@ A minimal and responsive web app that allows you to view the channels a Twitch u
 
 ## Live Demo
 
-[View it on GitHub Pages](burryfun.github.io/twitch-following/)
+[View it on GitHub Pages](https://burryfun.github.io/twitch-following/)
 
 ## How to Use
 
